@@ -6,17 +6,17 @@ import {
 } from "@react-mdc/base";
 
 import {
-  BASE_CLASS_NAME,
+    BASE_CLASS_NAME,
 } from "./constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__title`;
 
 export const propertyClassNames = {
-  DARK: `${CLASS_NAME}--theme-dark`,
+    LARGE: `${CLASS_NAME}--large`,
 };
 
 export type MetaProps = {
-    dark?: boolean,
+    large?: boolean,
 };
 
 export type ChildProps = {
@@ -24,7 +24,7 @@ export type ChildProps = {
 };
 
 /**
- * Card component
+ * Primary section title component
  */
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     protected renderBaseClassName() {
@@ -33,12 +33,12 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
     protected renderClassValues() {
         return [{
-            [propertyClassNames.DARK]: this.props.dark,
+            [propertyClassNames.LARGE]: this.props.large,
         }];
     }
 }
 
-export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Title extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
@@ -47,11 +47,11 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            "dark",
+            "large",
         ];
     }
 
     protected getChildComponent() {
-        return "div";
+        return "h1";
     }
 }

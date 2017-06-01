@@ -6,17 +6,12 @@ import {
 } from "@react-mdc/base";
 
 import {
-  BASE_CLASS_NAME,
+    BASE_CLASS_NAME,
 } from "./constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
-
-export const propertyClassNames = {
-  DARK: `${CLASS_NAME}--theme-dark`,
-};
+export const CLASS_NAME = `${BASE_CLASS_NAME}__horizontal-block`;
 
 export type MetaProps = {
-    dark?: boolean,
 };
 
 export type ChildProps = {
@@ -24,21 +19,15 @@ export type ChildProps = {
 };
 
 /**
- * Card component
+ * Horizontal block section component
  */
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     protected renderBaseClassName() {
         return CLASS_NAME;
     }
-
-    protected renderClassValues() {
-        return [{
-            [propertyClassNames.DARK]: this.props.dark,
-        }];
-    }
 }
 
-export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class HorizontalBlock extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
@@ -46,9 +35,7 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
     }
 
     protected getMetaPropNames() {
-        return [
-            "dark",
-        ];
+        return [];
     }
 
     protected getChildComponent() {

@@ -6,26 +6,23 @@ import {
 } from "@react-mdc/base";
 
 import {
-  BASE_CLASS_NAME,
+    BASE_CLASS_NAME,
 } from "./constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__actions`;
 
 export const propertyClassNames = {
-  DARK: `${CLASS_NAME}--theme-dark`,
+    VERTICAL: `${CLASS_NAME}--vertical`,
 };
 
 export type MetaProps = {
-    dark?: boolean,
+    vertical?: boolean,
 };
 
 export type ChildProps = {
     className?: string,
 };
 
-/**
- * Card component
- */
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     protected renderBaseClassName() {
         return CLASS_NAME;
@@ -33,12 +30,12 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
     protected renderClassValues() {
         return [{
-            [propertyClassNames.DARK]: this.props.dark,
+            [propertyClassNames.VERTICAL]: this.props.vertical,
         }];
     }
 }
 
-export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
@@ -47,11 +44,11 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            "dark",
+            "vertical",
         ];
     }
 
     protected getChildComponent() {
-        return "div";
+        return "section";
     }
 }

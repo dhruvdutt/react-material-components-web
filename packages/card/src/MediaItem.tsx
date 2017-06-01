@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
@@ -39,22 +37,32 @@ export type ChildProps = {
 /**
  * Media item component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_, props: MetaProps) {
+    protected renderClassValues() {
         return [
-            props.size == null ? null : classNameForSize(props.size),
+            this.props.size == null ? null : classNameForSize(this.props.size),
         ];
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLImageElement>, MetaProps>(
-    "img",
-    PropMakerMetaComponent.simple(new PropMaker(), "MediaItem"),
-    [
-        "size",
-    ],
-);
+export default class MediaItem extends DefaultComponentBase<React.HTMLProps<HTMLImageElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+
+    protected getMetaPropNames() {
+        return [
+            "size",
+        ];
+    }
+
+    protected getChildComponent() {
+        return "img";
+    }
+}

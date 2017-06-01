@@ -1,2 +1,2 @@
-export { default as Container, default as Fab } from "./container";
-export { default as Icon } from "./icon";
+export { default, default as Container } from "./Container";
+export { default as Icon } from "./Icon";
